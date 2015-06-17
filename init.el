@@ -1,3 +1,7 @@
+(if window-system
+    (tool-bar-mode -1)
+)
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 ;;MATLAB module
 (add-to-list 'load-path "~/.emacs.d/loadpath/")
@@ -16,6 +20,7 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 (autoload 'xah-css-mode "xah-css-mode" "css major mode." t)
+(add-to-list 'auto-mode-alist '("\\.css\\'" . xah-css-mode))
 
 ;;
 (setq visible-bell t)
