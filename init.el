@@ -1,6 +1,13 @@
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin/"))
+    (setq exec-path (append exec-path '("/usr/local/bin/")))
+
 (if window-system
     (tool-bar-mode -1)
 )
+
+
+(setenv "PATH" (concat (getenv "PATH") ":~/node_modules/js-beautify/js/bin"))
+    (setq exec-path (append exec-path '("~/node_modules/js-beautify/js/bin")))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 ;;MATLAB module
@@ -90,8 +97,50 @@ i.e. change right window to bottom, or change bottom window to right."
 (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
 (multi-web-global-mode 1)
 
+(eval-after-load 'js2-mode
+  '(add-hook 'js2-mode-hook
+             (lambda ()
+               (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
 
+;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
+(eval-after-load 'js
+  '(add-hook 'js-mode-hook
+             (lambda ()
+               (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
 
+(eval-after-load 'sgml-mode
+  '(add-hook 'html-mode-hook
+             (lambda ()
+               (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+(eval-after-load 'css-mode
+  '(add-hook 'css-mode-hook
+             (lambda ()
+               (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
+
+(eval-after-load 'xah-css-mode
+  '(add-hook 'xah-css-mode-hook
+             (lambda ()
+               (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+(require 'web-beautify) ;; Not necessary if using ELPA package
+(eval-after-load 'js2-mode
+  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
+;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
+(eval-after-load 'js
+  '(define-key js-mode-map (kbd "C-c b") 'web-beautify-js))
+
+(eval-after-load 'json-mode
+  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+
+(eval-after-load 'sgml-mode
+  '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
+
+(eval-after-load 'css-mode
+  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
+
+(eval-after-load 'xah-css-mode
+  '(define-key (current-global-map) (kbd "C-c b") 'web-beautify-html))
 
 ;;emmet-mode
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
