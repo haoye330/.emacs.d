@@ -15,11 +15,14 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+(autoload 'xah-css-mode "xah-css-mode" "css major mode." t)
+
 ;;
 (setq visible-bell t)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
+
 
 
 ;;(require 'multi-web-mode)
@@ -71,12 +74,14 @@ i.e. change right window to bottom, or change bottom window to right."
 (add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
+
+
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags 
   '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
     (js-mode  "<script[^>]*>" "</script>")
-    (css-mode "<style[^>]*>" "</style>")))
+    (xah-css-mode "<style[^>]*>" "</style>")))
 (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
 (multi-web-global-mode 1)
 
