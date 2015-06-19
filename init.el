@@ -102,6 +102,12 @@ i.e. change right window to bottom, or change bottom window to right."
  ; (interactive)
   ;(web-beautify-html)
   ;(newline))
+(defun sgml-close-tag-back (&optional arg)  
+  (interactive)
+    (let ((p (point)))
+      (sgml-close-tag)
+      (goto-char p)))
+
 
 (defun web-beautify-html-newline (&optional arg)
     (interactive)
@@ -129,14 +135,14 @@ i.e. change right window to bottom, or change bottom window to right."
   (indent-relative nil))
 
 (eval-after-load 'js2-mode
-  '(define-key js2-mode-map (kbd "M-RET") 'web-beautify-js-newline))
+  '(define-key js2-mode-map (kbd "M-RET") 'web-beautify-html-newline))
 
 (eval-after-load 'js2-mode
   '(define-key js2-mode-map (kbd "RET") 'newline-relative-indent))
 
 ;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
 (eval-after-load 'js
-  '(define-key js-mode-map (kbd "M-RET") 'web-beautify-js-newline))
+  '(define-key js-mode-map (kbd "M-RET") 'web-beautify-html-newline))
 
 (eval-after-load 'js
   '(define-key js-mode-map (kbd "RET") 'newline-relative-indent))
@@ -152,6 +158,21 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (eval-after-load 'sgml-mode
   '(define-key html-mode-map (kbd "RET") 'newline-relative-indent))
+
+(eval-after-load 'sgml-mode
+  '(define-key html-mode-map (kbd "C-c C-e") 'sgml-close-tag-back))
+
+(eval-after-load 'sgml-mode
+		 '(define-key html-mode-map (kbd "C-c C-s") (define-skeleton html-script
+  "HTML level 1 headline tags."
+  nil
+  "<script type = "_"> </script>")))
+  
+  (eval-after-load 'sgml-mode
+		 '(define-key html-mode-map (kbd "C-c C-t") (define-skeleton html-style
+  "HTML level 1 headline tags."
+  nil
+  "<style type = "_"> </style>")))
 
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "M-RET") 'web-beautify-css-newline))
@@ -170,7 +191,7 @@ i.e. change right window to bottom, or change bottom window to right."
   '(define-key js2-mode-map (kbd "TAB") 'web-beautify-js))
 ;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
 (eval-after-load 'js
-  '(define-key js-mode-map (kbd "TAB") 'web-beautify-js))
+  '(define-key js-mode-map (kbd "TAB") 'web-beautify-html))
 
 (eval-after-load 'json-mode
   '(define-key json-mode-map (kbd "TAB") 'web-beautify-js))
@@ -186,6 +207,10 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (eval-after-load 'xah-css-mode
   '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
+
+
+
+
 
 ;;emmet-mode
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
