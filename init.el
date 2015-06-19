@@ -173,7 +173,26 @@ i.e. change right window to bottom, or change bottom window to right."
   "HTML level 1 headline tags."
   nil
   "<style type = "_"> </style>")))
+  
+(eval-after-load 'sgml-mode
+		 '(define-key html-mode-map (kbd "C-c h") 'html-template))
 
+		 
+		 
+		 
+(define-skeleton html-template
+  "html-template"
+  nil
+  "<!DOCTYPE html>\n"
+  "<html>\n \n"
+  "<head> \n"
+  "    <meta charset=\"utf-8\"> \n"
+  "    <title>"_"</title>\n \n"
+  "</head> \n \n"
+  "<body> \n \n"
+  "</html>")
+		 
+		 
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "M-RET") 'web-beautify-css-newline))
 
