@@ -1,3 +1,4 @@
+(setq-default cursor-type 'bar) 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin/"))
     (setq exec-path (append exec-path '("/usr/local/bin/")))
 
@@ -97,50 +98,94 @@ i.e. change right window to bottom, or change bottom window to right."
 (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
 (multi-web-global-mode 1)
 
+;(defun web-beautify-html-newline ()
+ ; (interactive)
+  ;(web-beautify-html)
+  ;(newline))
+
+(defun web-beautify-html-newline (&optional arg)
+    (interactive)
+    (web-beautify-html)
+    (move-end-of-line nil)
+    (newline)
+    (indent-relative nil))
+
+(defun web-beautify-css-newline (&optional arg)
+    (interactive)
+    (web-beautify-css)
+    (move-end-of-line nil)
+    (newline)
+    (indent-relative nil))
+
+(defun web-beautify-js-newline (&optional arg)
+    (interactive)
+    (web-beautify-js)
+    (move-end-of-line nil)
+    (newline)
+    (indent-relative nil))
+(defun newline-relative-indent ()
+  (interactive)
+  (newline)
+  (indent-relative nil))
+
 (eval-after-load 'js2-mode
-  '(add-hook 'js2-mode-hook
-             (lambda ()
-               (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+  '(define-key js2-mode-map (kbd "M-RET") 'web-beautify-js-newline))
+
+(eval-after-load 'js2-mode
+  '(define-key js2-mode-map (kbd "RET") 'newline-relative-indent))
 
 ;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
 (eval-after-load 'js
-  '(add-hook 'js-mode-hook
-             (lambda ()
-               (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+  '(define-key js-mode-map (kbd "M-RET") 'web-beautify-js-newline))
 
-(eval-after-load 'sgml-mode
-  '(add-hook 'html-mode-hook
-             (lambda ()
-               (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
-
-(eval-after-load 'css-mode
-  '(add-hook 'css-mode-hook
-             (lambda ()
-               (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
-
-(eval-after-load 'xah-css-mode
-  '(add-hook 'xah-css-mode-hook
-             (lambda ()
-               (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
-
-(require 'web-beautify) ;; Not necessary if using ELPA package
-(eval-after-load 'js2-mode
-  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
-;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
 (eval-after-load 'js
-  '(define-key js-mode-map (kbd "C-c b") 'web-beautify-js))
+  '(define-key js-mode-map (kbd "RET") 'newline-relative-indent))
 
 (eval-after-load 'json-mode
-  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+  '(define-key json-mode-map (kbd "M-RET") 'web-beautify-js-newline))
+
+(eval-after-load 'json-mode
+  '(define-key json-mode-map (kbd "RET") 'newline-relative-indent))
 
 (eval-after-load 'sgml-mode
-  '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
+  '(define-key html-mode-map (kbd "M-RET") 'web-beautify-html-newline))
+
+(eval-after-load 'sgml-mode
+  '(define-key html-mode-map (kbd "RET") 'newline-relative-indent))
 
 (eval-after-load 'css-mode
-  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
+  '(define-key css-mode-map (kbd "M-RET") 'web-beautify-css-newline))
+
+(eval-after-load 'css-mode
+  '(define-key css-mode-map (kbd "RET") 'newline-relative-indent))
 
 (eval-after-load 'xah-css-mode
-  '(define-key (current-global-map) (kbd "C-c b") 'web-beautify-html))
+  '(define-key (current-global-map) (kbd "RET") 'newline-relative-indent))
+
+(eval-after-load 'xah-css-mode
+  '(define-key (current-global-map) (kbd "M-RET") 'web-beautify-html-newline))
+
+
+(eval-after-load 'js2-mode
+  '(define-key js2-mode-map (kbd "TAB") 'web-beautify-js))
+;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
+(eval-after-load 'js
+  '(define-key js-mode-map (kbd "TAB") 'web-beautify-js))
+
+(eval-after-load 'json-mode
+  '(define-key json-mode-map (kbd "TAB") 'web-beautify-js))
+
+(eval-after-load 'sgml-mode
+  '(define-key html-mode-map (kbd "TAB") 'web-beautify-html))
+
+(eval-after-load 'css-mode
+  '(define-key css-mode-map (kbd "TAB") 'web-beautify-css))
+
+(eval-after-load 'xah-css-mode
+  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
+
+(eval-after-load 'xah-css-mode
+  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
 
 ;;emmet-mode
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes

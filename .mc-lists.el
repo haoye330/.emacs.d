@@ -10,6 +10,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+	browse-url-of-buffer
 	electric-newline-and-maybe-indent
 	sgml-slash
 	))
