@@ -166,16 +166,16 @@ i.e. change right window to bottom, or change bottom window to right."
 		 '(define-key html-mode-map (kbd "C-c C-s") (define-skeleton html-script
   "HTML level 1 headline tags."
   nil
-  "<script type = "_"> </script>")))
+  "<script type = "_">\n \n    </script>")))
   
   (eval-after-load 'sgml-mode
 		 '(define-key html-mode-map (kbd "C-c C-t") (define-skeleton html-style
   "HTML level 1 headline tags."
   nil
-  "<style type = "_"> </style>")))
+  "<style type = "_">\n \n    </style>")))
   
 (eval-after-load 'sgml-mode
-		 '(define-key html-mode-map (kbd "C-c h") 'html-template))
+		 '(define-key html-mode-map (kbd "C-c C-h") 'html-template))
 
 		 
 		 
@@ -205,7 +205,12 @@ i.e. change right window to bottom, or change bottom window to right."
 (eval-after-load 'xah-css-mode
   '(define-key (current-global-map) (kbd "M-RET") 'web-beautify-html-newline))
 
+(eval-after-load 'xah-css-mode
+  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
 
+(eval-after-load 'xah-css-mode
+  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
+  
 (eval-after-load 'js2-mode
   '(define-key js2-mode-map (kbd "TAB") 'web-beautify-js))
 ;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
@@ -221,11 +226,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "TAB") 'web-beautify-css))
 
-(eval-after-load 'xah-css-mode
-  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
 
-(eval-after-load 'xah-css-mode
-  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
 
 
 

@@ -536,7 +536,7 @@ This is called by emacs abbrev system."
 
 (progn
   (setq xah-css-key-map (make-sparse-keymap))
-  (define-key xah-css-key-map (kbd "TAB") 'xah-css-complete-or-indent)
+;;  (define-key xah-css-key-map (kbd "TAB") 'xah-css-complete-or-indent)
 
   (define-prefix-command 'xah-css-single-keys-map)
 
