@@ -190,6 +190,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "    <title>"_"</title>\n \n"
   "</head> \n \n"
   "<body> \n \n"
+  "</body>\n"
   "</html>")
 		 
 		 
