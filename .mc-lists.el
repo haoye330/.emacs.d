@@ -13,4 +13,5 @@
 	browse-url-of-buffer
 	electric-newline-and-maybe-indent
 	sgml-slash
+	web-beautify-html
 	))
