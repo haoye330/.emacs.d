@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	kill-region
 	ns-copy-including-secondary
 	sgml-close-tag
 	view-order-manuals
@@ -10,8 +11,12 @@
 
 (setq mc/cmds-to-run-once
       '(
+	backward-sentence
 	browse-url-of-buffer
 	electric-newline-and-maybe-indent
+	handle-switch-frame
+	js2-mode-show-node
 	sgml-slash
 	web-beautify-html
+	web-beautify-js
 	))
