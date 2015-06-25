@@ -1,5 +1,6 @@
-(set-frame-parameter nil 'fullscreen 'fullboth)
-(global-linum-mode t)
+;;(set-frame-parameter nil 'fullscreen 'fullboth)
+(global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
+
 (setq-default cursor-type 'bar) 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin/"))
     (setq exec-path (append exec-path '("/usr/local/bin/")))
@@ -135,6 +136,15 @@ i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (newline)
   (indent-relative nil))
+
+
+
+
+
+(add-hook 'sgml-mode-hook 'linum-mode)
+(add-hook 'js2-mode-hook 'linum-mode)
+(add-hook 'json-mode-hook 'linum-mode)
+(add-hook 'xah-css-mode-hook 'linum-mode)
 
 (eval-after-load 'js2-mode
   '(define-key js2-mode-map (kbd "M-RET") 'web-beautify-html-newline))
