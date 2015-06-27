@@ -1,5 +1,6 @@
 ;;(set-frame-parameter nil 'fullscreen 'fullboth)
 (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
+(setenv "PATH" (concat (getenv "PATH") ":/usr/texbin"))
 
 (setq-default cursor-type 'bar) 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin/"))
@@ -154,7 +155,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
 (eval-after-load 'js
-  '(define-key js-mode-map (kbd "M-RET") 'web-beautify-html-newline))
+  '(define-key js-mode-map (kbd "M-RET") 'web-beautify-js-newline))
 
 (eval-after-load 'js
   '(define-key js-mode-map (kbd "RET") 'newline-relative-indent))
@@ -228,7 +229,7 @@ i.e. change right window to bottom, or change bottom window to right."
   '(define-key js2-mode-map (kbd "TAB") 'web-beautify-js))
 ;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
 (eval-after-load 'js
-  '(define-key js-mode-map (kbd "TAB") 'web-beautify-html))
+  '(define-key js-mode-map (kbd "TAB") 'web-beautify-js))
 
 (eval-after-load 'json-mode
   '(define-key json-mode-map (kbd "TAB") 'web-beautify-js))
