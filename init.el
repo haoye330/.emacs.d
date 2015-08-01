@@ -220,10 +220,10 @@ i.e. change right window to bottom, or change bottom window to right."
   '(define-key (current-global-map) (kbd "M-RET") 'web-beautify-html-newline))
 
 (eval-after-load 'xah-css-mode
-  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
+  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-css))
 
 (eval-after-load 'xah-css-mode
-  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-html))
+  '(define-key (current-global-map) (kbd "TAB") 'web-beautify-css))
   
 (eval-after-load 'js2-mode
   '(define-key js2-mode-map (kbd "TAB") 'web-beautify-js))
